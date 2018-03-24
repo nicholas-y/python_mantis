@@ -38,10 +38,11 @@ class SessionHelper:
         wd = self.app.wd
         return wd.find_element_by_css_selector("td.login-info-left span").text
 
-    def ensure_login(self, username, password):
+    def ensure_login(self, usertype):
+        username = self.app.get_jsontarget()[usertype]["username"]
         if self.is_logged_in():
             if self.is_logged_in_as(username):
                 return
             else:
                 self.do_logout()
-        self.do_login(username, password)
+        self.do_login(usertype)
