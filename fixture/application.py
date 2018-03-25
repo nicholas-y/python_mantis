@@ -3,14 +3,11 @@ from fixture.session import SessionHelper
 from fixture.project import ProjectHelper
 
 
-target = None
-
-
 class Application:
+    target = None
 
     def __init__(self, browser, base_url, jsontarget):
-        global target
-        target = jsontarget
+        self.target = jsontarget
         if browser == "firefox":
             self.wd = webdriver.Firefox(capabilities={"marionette": False},
                                         firefox_binary="c:/Program Files/Mozilla Firefox/firefox.exe")
@@ -26,8 +23,7 @@ class Application:
         self.base_url = base_url
 
     def get_jsontarget(self):
-        global target
-        return target
+        return self.target
 
     def is_valid(self):
         try:
