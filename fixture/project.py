@@ -1,5 +1,6 @@
 from model.project import Project
 
+
 class ProjectHelper():
 
     project_cache = None
@@ -15,6 +16,14 @@ class ProjectHelper():
         self.fill_project_form_field("description", project.description)
         wd.find_element_by_css_selector("input.button").click()
         wd.find_element_by_link_text("Proceed").click()
+        self.project_cache = None
+
+    def delete(self, project):
+        wd = self.app.wd
+        self.open_manage_project_page()
+        wd.find_element_by_link_text(project.name).click()
+        wd.find_element_by_css_selector("input[value='Delete Project']").click()
+        wd.find_element_by_css_selector("input[value='Delete Project']").click()
         self.project_cache = None
 
     def open_manage_project_page(self):
