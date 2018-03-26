@@ -1,13 +1,14 @@
 from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.project import ProjectHelper
+from fixture.james import JamesHelper
 
 
 class Application:
-    target = None
+    config = None
 
-    def __init__(self, browser, base_url, jsontarget):
-        self.target = jsontarget
+    def __init__(self, browser, jsontarget):
+        self.config = jsontarget
         if browser == "firefox":
             self.wd = webdriver.Firefox(capabilities={"marionette": False},
                                         firefox_binary="c:/Program Files/Mozilla Firefox/firefox.exe")
@@ -20,10 +21,11 @@ class Application:
         self.wd.implicitly_wait(5)
         self.session = SessionHelper(self)
         self.project = ProjectHelper(self)
-        self.base_url = base_url
+        self.james = JamesHelper(self)
+        self.base_url = jsontarget["web"]["baseUrl"]
 
     def get_jsontarget(self):
-        return self.target
+        return self.config
 
     def is_valid(self):
         try:
