@@ -1,7 +1,7 @@
 import json
 
 
-def test_add_project(app, data_project):
+def test_add_project_check_with_soap(app, data_project):
     project = data_project
     old_projects = app.soap.get_project_list(app.config["webadmin"]["username"], app.config["webadmin"]["password"])
     app.session.ensure_login("webadmin")

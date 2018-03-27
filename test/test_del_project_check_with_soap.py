@@ -2,7 +2,7 @@ from model.project import Project
 import random
 
 
-def test_del_project(app):
+def test_del_project_check_with_soap(app):
     app.session.ensure_login("webadmin")
     if len(app.soap.get_project_list(app.config["webadmin"]["username"], app.config["webadmin"]["password"])) == 0:
         app.project.add(Project(name="Test1", description="Descr1"))
