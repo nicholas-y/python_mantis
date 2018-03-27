@@ -3,10 +3,10 @@ class SessionHelper:
     def __init__(self, app):
         self.app = app
 
-    def do_login(self, usertype):
+    def do_login(self, username, password):
         wd = self.app.wd
-        username = self.app.get_jsontarget()[usertype]["username"]
-        password = self.app.get_jsontarget()[usertype]["password"]
+        # username = self.app.get_jsontarget()[usertype]["username"]
+        # password = self.app.get_jsontarget()[usertype]["password"]
         self.app.open_login_page()
         # enter username
         wd.find_element_by_name("username").click()

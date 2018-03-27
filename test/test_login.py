@@ -1,5 +1,5 @@
 
 
 def test_login(app):
-    app.session.do_login("webadmin")
+    app.session.do_login("administrator", "root")
     assert app.session.is_logged_in_as("administrator")
